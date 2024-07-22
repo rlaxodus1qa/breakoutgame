@@ -118,7 +118,7 @@ while running:
 
     # 게임 오버 화면 표시
     if game_over:
-        game_over_text = font.render("Game Over - Press 'R' to Restart", )
+        game_over_text = font.render("Game Over - Press 'R' to Restart", True, dark_green)
         screen.blit(game_over_text, (
             screen_width // 2 - game_over_text.get_width() // 2,
             screen_height // 2 - game_over_text.get_height() // 2
