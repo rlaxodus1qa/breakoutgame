@@ -23,17 +23,26 @@ pygame.display.set_caption("벽돌 꺠기 게임")
 # 메인 반복 구간
 running = True
 clock = pygame.time.Clock()
-
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    # 화면 배경 색 설정
-    screen.fill(beige_marka)
 
     # 공 이동 (+=는 ball_x = ball_x + ball_dx와 동일)
     ball_x += ball_dx
     ball_y += ball_dy
+
+    # 공이 벽에 부딪힐 떄 반사
+    # 1. 공이 좌우 벽에 부딪힐 떄
+    if ball_x <= 0 or ball_x >= screen_width - ball_width:
+        ball_dx = -ball_dx # 공의 x 방향을 반전함
+    # 2. 공이 상하 벽에 부딪힐 떄
+    if ball_y <= 0 or ball_y >= screen_height - ball_height:
+        # 공의 y 방향을 반전함
+        ball_dy = -ball_dy
+
+    # 화면 배경 색 설정
+    screen.fill(beige_marka)
 
     # 공 그리기
     pygame.draw.ellipse(screen, ford_dark_charcoal, (ball_x, ball_y, ball_width, ball_height))
